@@ -42,7 +42,7 @@ Route::get('/{foo?}', function ($foo = 'bar') {
 })->where('foo','[0-9a-zA-Z]{3}');
 */
 
-/* 라우트에 이름 부여 리디렉션 */
+/* 라우트에 이름 부여 리디렉션
 Route::get('/',[
   'as' => 'home', //라우트 이름
   function(){
@@ -53,4 +53,27 @@ Route::get('/',[
 
 Route::get('/home', function () {
     return redirect(route('home'));
+});
+
+*/
+
+Route::get('/', function () {
+    return view('viewAndDataBinding') -> with('name','Foo');
+});
+
+/* 1)배열을 이용하여 여러개의 데이터를 넘기는 방법 (with메서드 체인하여 데이터 바인딩)
+Route::get('/', function () {
+    return view('viewAndDataBinding') -> with([
+      'name' => 'Foo',
+      'greeting' => '안녕하세요?',
+    ]);
+});
+*/
+
+/* 2)배열을 이용하여 여러개의 데이터를 넘기는 방법 (view() 함수의 두번째로 인자 넘기기) */
+Route::get('/', function () {
+    return view('viewAndDataBinding',[
+      'name' => 'Foo',
+      'greeting' => '안녕하세요?',
+    ]);
 });
