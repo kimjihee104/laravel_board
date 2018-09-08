@@ -12,6 +12,24 @@
   </head>
   <body>
       <h1><?= isset($greeting) ? "{$greeting}" : 'hello'; ?>
-        <?= $name; ?> </h1>
+        <?= isset($name) ? "{$name}" : ' '; ?> </h1>
+
+      <!-- 문자열 보간  html 주석-->
+      {{-- 문자열 보간  블레이드 주석(html 소스에서 확인되지 않음) --}}
+      <h1>{{  $greeting or 'Hello ' }}
+          {{ $name or ' ' }} </h1>
+
+
+      <ul>
+        @foreach($items as $item)
+          <li>{{$item}} </li>
+        @endforeach
+      </ul>
+
+      @if($itemCount = count($items))
+      <p> {{ $itemCount }} 종류의 과일이 있습니다 </p>
+      @else
+      <p> 엥~ 아무것도 없는데요!</p>
+      @endif
   </body>
 </html>

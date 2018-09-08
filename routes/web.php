@@ -57,11 +57,13 @@ Route::get('/home', function () {
 
 */
 
+
+/* 1)배열을 이용하여 여러개의 데이터를 넘기는 방법 (with메서드 체인하여 데이터 바인딩)
+
 Route::get('/', function () {
     return view('viewAndDataBinding') -> with('name','Foo');
 });
 
-/* 1)배열을 이용하여 여러개의 데이터를 넘기는 방법 (with메서드 체인하여 데이터 바인딩)
 Route::get('/', function () {
     return view('viewAndDataBinding') -> with([
       'name' => 'Foo',
@@ -70,10 +72,23 @@ Route::get('/', function () {
 });
 */
 
-/* 2)배열을 이용하여 여러개의 데이터를 넘기는 방법 (view() 함수의 두번째로 인자 넘기기) */
+/* 2)배열을 이용하여 여러개의 데이터를 넘기는 방법 (view() 함수의 두번째로 인자 넘기기)
 Route::get('/', function () {
     return view('viewAndDataBinding',[
       'name' => 'Foo',
       'greeting' => '안녕하세요?',
     ]);
+});
+*/
+
+/*
+Route::get('/',function(){
+  $items = ['apple','banana' ,'tomato'];
+
+  return view('viewAndDataBinding' , ['items' => $items]);
+});
+
+*/
+Route::get('/{foo}',function($foo = 'bar'){
+    return view('layouts/content');
 });
